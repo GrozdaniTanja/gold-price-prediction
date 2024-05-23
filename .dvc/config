@@ -1,3 +1,9 @@
+[core]
+    remote = origin
+    autostage = true
+
 ['remote "origin"']
     url = s3://dvc
     endpointurl = https://dagshub.com/GrozdaniTanja/gold-price-prediction.s3
+    access_key_id = 55d4688fe2e59c1a93ebe175633b54c64fe5f852
+    secret_access_key = 55d4688fe2e59c1a93ebe175633b54c64fe5f852
