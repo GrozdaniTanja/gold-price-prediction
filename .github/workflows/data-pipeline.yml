@@ -24,8 +24,13 @@ jobs:
           pip install poetry
           poetry install
           pip install pandas
+      
+      - name: Install DVC
+        run: |
+          pip install dvc
 
-      - name: Execute fetch_data.py
+
+      - name: Execute fetch-data.py
         run: python src/data/fetch-data.py 
 
       - name: Configure git
