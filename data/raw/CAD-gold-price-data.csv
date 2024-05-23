@@ -1,0 +1,2 @@
+timestamp,price,currency,prev_close_price,open_price,low_price,high_price,ch,chp,ask,bid,price_gram_24k,price_gram_22k,price_gram_21k,price_gram_20k,price_gram_18k,price_gram_16k,price_gram_14k,price_gram_10k
+2024-05-23T22:49:15.109123,3196.3985000000002,CAD,3258.08,3258.08,3195.324,3262.812,-61.681,-1.89,3196.839,3196.095,102.7666,94.2027,89.9208,85.6388,77.0749,68.5111,59.9472,42.8194

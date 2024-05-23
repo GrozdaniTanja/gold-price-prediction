@@ -1,0 +1,2 @@
+timestamp,price,currency,prev_close_price,open_price,low_price,high_price,ch,chp,ask,bid,price_gram_24k,price_gram_22k,price_gram_21k,price_gram_20k,price_gram_18k,price_gram_16k,price_gram_14k,price_gram_10k
+2024-05-23T22:49:12.695029,2327.98,USD,2378.905,2378.905,2327.075,2383.8,-50.93,-2.14,2328.23,2327.57,74.8463,68.6091,65.4905,62.3719,56.1347,49.8975,43.6603,31.186

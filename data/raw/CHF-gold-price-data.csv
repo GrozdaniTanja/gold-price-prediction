@@ -1,0 +1,2 @@
+timestamp,price,currency,prev_close_price,open_price,low_price,high_price,ch,chp,ask,bid,price_gram_24k,price_gram_22k,price_gram_21k,price_gram_20k,price_gram_18k,price_gram_16k,price_gram_14k,price_gram_10k
+2024-05-23T22:49:14.673566,2129.05,CHF,2178.49,2178.49,2128.42,2181.82,-49.44,-2.27,2129.53,2128.61,68.4505,62.7463,59.8942,57.0421,51.3379,45.6337,39.9295,28.5211
