@@ -1,5 +1,5 @@
 outs:
-- md5: 8d35f7cd3b65d726c61f0b5be05bfc0c
-  size: 1876
+- md5: dd739189578358a8c21aa9564fbc122d
+  size: 2043
   hash: md5
   path: AUD-gold-price-data.csv

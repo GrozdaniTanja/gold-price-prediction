@@ -1,5 +1,5 @@
 outs:
-- md5: a5f69c87a6ed89adef57fb6043d79af8
-  size: 1504
+- md5: e4d02da0c977774d8a6ed3dd87f5eb3f
+  size: 1668
   hash: md5
   path: CHF-gold-price-data.csv
