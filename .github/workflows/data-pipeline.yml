@@ -141,6 +141,9 @@ jobs:
         run: |
           git config --global user.email "tanja.grozdani@student.um.si"
           git config --global user.name "GrozdaniTanja"
+          git stash
+          git pull --rebase origin ${{ github.ref }}
+          git stash pop || true 
           git add .
           git commit -m "action: process gold data"
 
