@@ -1,5 +1,5 @@
 outs:
-- md5: ee9655936c58127d77481ea66c0f48ad
-  size: 1597
+- md5: 75eb3836240e163b0210fad1f9b7aef0
+  size: 1778
   hash: md5
   path: CAD-gold-price-data.csv
