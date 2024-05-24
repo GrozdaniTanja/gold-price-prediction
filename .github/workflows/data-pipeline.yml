@@ -63,12 +63,16 @@ jobs:
           dvc add data/raw/*.csv 
           dvc push -r origin
 
-      - name: Commit changes to GIT
+       - name: Commit changes to GIT
         run: |
           git config --global user.email "tanja.grozdani@student.um.si"
           git config --global user.name "GrozdaniTanja"
           git add .
-          git commit -m "action: fetch data"
+          git diff-index --quiet HEAD || git commit -m "action: fetch data" || true
+
+      - name: Pull changes from remote repository
+        run: |
+          git pull --rebase origin ${{ github.ref }}
 
       - name: Push changes
         uses: ad-m/github-push-action@master
