@@ -1,0 +1,5 @@
+outs:
+- md5: 9cf1e53b68251d0418ae2c307fe17cac
+  size: 1194
+  hash: md5
+  path: GBP-gold-price-data.csv
