@@ -37,6 +37,9 @@ jobs:
         run: |
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
+
+      - name: Pull changes from remote repository
+        run: git pull origin master --ff-only
           
       - name: Commit/push changes 
         run: |
