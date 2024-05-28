@@ -10,9 +10,10 @@ RAW_DATA_DIR = os.path.join(DATA_DIR, "raw")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-API_KEY = "goldapi-3zarcne19lwkczfqw-io"
+API_KEY = "goldapi-fd3p6tslwqv3gdr-io"
 SYMBOL = "XAU"
-CURRENCIES = ["USD", "EUR", "GBP", "AUD", "CHF", "CAD"]
+# CURRENCIES = ["USD", "EUR", "GBP", "AUD", "CHF", "CAD"]
+CURRENCY = "EUR"
 
 
 def make_gapi_request(symbol, curr, date=""):
@@ -63,13 +64,12 @@ def save_data_to_csv(data, filename):
 
 
 def fetch_and_save_real_time_data():
-    for curr in CURRENCIES:
-        data = make_gapi_request(SYMBOL, curr)
-        if data:
-            data_file = os.path.join(
-                RAW_DATA_DIR, f"{curr}-gold-price-data.csv")
-            save_data_to_csv(data, data_file)
-            print(f"Real-time data saved for {curr}: {data}")
+    data = make_gapi_request(SYMBOL, CURRENCY)
+    if data:
+        data_file = os.path.join(
+            RAW_DATA_DIR, f"{CURRENCY}-gold-price-data.csv")
+        save_data_to_csv(data, data_file)
+        print(f"Real-time data saved for {CURRENCY}: {data}")
 
 
 if __name__ == "__main__":
