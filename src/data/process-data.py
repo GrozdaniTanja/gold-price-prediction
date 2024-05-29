@@ -3,6 +3,18 @@ import csv
 from datetime import datetime
 
 
+def get_last_processed_timestamp(processed_file):
+    if os.path.exists(processed_file):
+        with open(processed_file, 'r') as file:
+            reader = csv.DictReader(file)
+            last_row = None
+            for row in reader:
+                last_row = row
+            if last_row:
+                return datetime.fromisoformat(last_row['timestamp'])
+    return None
+
+
 def process_gold_data(GOLD_DATA_DIR, PROCESSED_GOLD_DIR):
     os.makedirs(PROCESSED_GOLD_DIR, exist_ok=True)
 
@@ -15,8 +27,10 @@ def process_gold_data(GOLD_DATA_DIR, PROCESSED_GOLD_DIR):
                 csv_filename = f"{currency}-processed-gold-price-data.csv"
                 csv_file_path = os.path.join(PROCESSED_GOLD_DIR, csv_filename)
 
-                file_exists = os.path.exists(csv_file_path)
+                last_processed_timestamp = get_last_processed_timestamp(
+                    csv_file_path)
 
+                file_exists = os.path.exists(csv_file_path)
                 with open(csv_file_path, 'a' if file_exists else 'w', newline='', encoding='utf-8') as csvfile:
                     fieldnames = ['timestamp', 'price', 'prev_close_price',
                                   'open_price', 'low_price', 'high_price', 'ch', 'chp']
@@ -26,8 +40,16 @@ def process_gold_data(GOLD_DATA_DIR, PROCESSED_GOLD_DIR):
                         writer.writeheader()
 
                     for record in reader:
-                        timestamp = datetime.fromisoformat(
-                            record['timestamp']).strftime("%Y-%m-%d %H:%M:%S")
+                        record_timestamp = datetime.fromisoformat(
+                            record['timestamp'].split('.')[0])
+
+                        if last_processed_timestamp and record_timestamp <= last_processed_timestamp:
+                            continue
+
+                        last_processed_timestamp = record_timestamp
+
+                        timestamp = record_timestamp.strftime(
+                            "%Y-%m-%d %H:%M:%S")
 
                         new_record = {
                             'timestamp': timestamp,
