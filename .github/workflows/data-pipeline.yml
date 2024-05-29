@@ -146,8 +146,10 @@ jobs:
           git stash
           git pull --rebase origin ${{ github.ref }}
           git stash pop || true 
-          git add .
-          git commit -m "action: process gold data"
+          if [[ `git status --porcelain` ]]; then
+            git add .
+            git commit -m "action: process gold data"
+          fi
 
       - name: Push changes
         uses: ad-m/github-push-action@master
