@@ -2,7 +2,7 @@ name: Data-Pipeline
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -82,79 +82,79 @@ jobs:
         id: sha_new
         run: echo "SHA_NEW=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
-  # process-data:
-  #   runs-on: ubuntu-latest
-  #   needs: fetch-data
-  #   permissions:
-  #     contents: write
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: ${{ needs.fetch-data.outputs.sha_new }}
-  #         fetch-depth: 0
+  process-data:
+    runs-on: ubuntu-latest
+    needs: fetch-data
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.fetch-data.outputs.sha_new }}
+          fetch-depth: 0
 
-  #     - name: Install Poetry
-  #       run: |
-  #         pipx install poetry
+      - name: Install Poetry
+        run: |
+          pipx install poetry
 
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v2
-  #       with:
-  #         python-version: 3.11
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
 
-  #     - name: Install dependencies
-  #       run: |
-  #         poetry install --with dev --no-interaction --no-root
+      - name: Install dependencies
+        run: |
+          poetry install --with dev --no-interaction --no-root
 
-  #     - name: Install DVC
-  #       run: |
-  #         pip install dvc
+      - name: Install DVC
+        run: |
+          pip install dvc
 
-  #     - name: Install DVC with S3 support
-  #       run: |
-  #         pip install 'dvc[s3]'
+      - name: Install DVC with S3 support
+        run: |
+          pip install 'dvc[s3]'
 
-  #     - name: Configure DVC
-  #       run: |
-  #         dvc remote modify origin endpointurl https://dagshub.com/GrozdaniTanja/gold-price-prediction.s3
-  #         dvc remote modify origin access_key_id ${{ secrets.DAGSHUB_ACCESS_KEY_ID }}
-  #         dvc remote modify origin secret_access_key ${{ secrets.DAGSHUB_SECRET_ACCESS_KEY }}
+      - name: Configure DVC
+        run: |
+          dvc remote modify origin endpointurl https://dagshub.com/GrozdaniTanja/gold-price-prediction.s3
+          dvc remote modify origin access_key_id ${{ secrets.DAGSHUB_ACCESS_KEY_ID }}
+          dvc remote modify origin secret_access_key ${{ secrets.DAGSHUB_SECRET_ACCESS_KEY }}
 
-  #     - name: DVC pull
-  #       run: |
-  #         dvc pull -r origin
+      - name: DVC pull
+        run: |
+          dvc pull -r origin
 
-  #     - name: Process gold data
-  #       run: |
-  #         poetry run python src/data/process-data.py
+      - name: Process gold data
+        run: |
+          poetry run python src/data/process-data.py
 
-  #     - name: Remove file from Git tracking
-  #       run: |
-  #         git rm -r --cached 'data/processed/*.csv' || true
-  #         git commit -m "stop tracking data/processed/*csv" || true
+      - name: Remove file from Git tracking
+        run: |
+          git rm -r --cached 'data/processed/*.csv' || true
+          git commit -m "stop tracking data/processed/*csv" || true
 
-  #     - name: Commit changes to DVC
-  #       run: |
-  #         dvc add data/processed/*.csv
-  #         dvc push -r origin
+      - name: Commit changes to DVC
+        run: |
+          dvc add data/processed/*.csv
+          dvc push -r origin
 
-  #     - name: Commit changes to GIT
-  #       run: |
-  #         git config --global user.email "tanja.grozdani@student.um.si"
-  #         git config --global user.name "GrozdaniTanja"
-  #         git stash
-  #         git pull --rebase origin ${{ github.ref }}
-  #         git stash pop || true 
-  #         git add .
-  #         git commit -m "action: process gold data"
+      - name: Commit changes to GIT
+        run: |
+          git config --global user.email "tanja.grozdani@student.um.si"
+          git config --global user.name "GrozdaniTanja"
+          git stash
+          git pull --rebase origin ${{ github.ref }}
+          git stash pop || true 
+          git add .
+          git commit -m "action: process gold data"
 
-  #     - name: Push changes
-  #       uses: ad-m/github-push-action@master
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
-  #     - name: Get commit SHA and store it
-  #       id: sha_new
-  #       run: echo "SHA_NEW=$(git rev-parse HEAD)" >> $GITHUB_ENV
+      - name: Get commit SHA and store it
+        id: sha_new
+        run: echo "SHA_NEW=$(git rev-parse HEAD)" >> $GITHUB_ENV
