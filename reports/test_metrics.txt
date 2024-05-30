@@ -1,0 +1,9 @@
+Prophet test MAE for EUR: 1.7076878116928969
+Prophet test MSE for EUR: 4.490883359081847
+Linear Regression test MSE for EUR: 0.0013959509536792768
+Linear Regression test MAPE for EUR: 0.0006100782868483139
+Linear Regression test R-squared for EUR: 0.9997732759537328
+//zadnji model po merge
+Linear Regression test MSE for EUR: 2.9584970228434896e-05
+Linear Regression test MAPE for EUR: 0.00019151493054363767
+Linear Regression test R-squared for EUR: 0.9999978593700444

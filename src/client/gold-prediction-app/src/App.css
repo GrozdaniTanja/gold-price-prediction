@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+form {
+  margin: 20px 0;
+}
+
+input {
+  margin: 0 10px;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
+
+.predictions {
+  text-align: left;
+  margin-top: 20px;
+}

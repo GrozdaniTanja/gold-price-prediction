@@ -1,0 +1,9 @@
+Prophet train MAE for EUR: 1.1176497345842684
+Prophet train MSE for EUR: 2.1510254383223257
+Linear Regression train MSE for EUR: 8.267632039059748e-06
+Linear Regression train MAPE for EUR: 0.00011098160882499588
+Linear Regression train R-squared for EUR: 0.9999998826197156
+//zadnji model po merge
+Linear Regression train MSE for EUR: 0.00033898138848711213
+Linear Regression train MAPE for EUR: 0.00031227442667939383
+Linear Regression train R-squared for EUR: 0.9999928425916528

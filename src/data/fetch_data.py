@@ -12,7 +12,6 @@ os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
 API_KEY = "goldapi-fd3p6tslwqv3gdr-io"
 SYMBOL = "XAU"
-# CURRENCIES = ["USD", "EUR", "GBP", "AUD", "CHF", "CAD"]
 CURRENCY = "EUR"
 
 
