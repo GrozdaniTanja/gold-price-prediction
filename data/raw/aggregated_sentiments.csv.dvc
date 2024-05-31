@@ -1,0 +1,5 @@
+outs:
+- md5: e4ba81abb7769adebd13246f8d8bf9c3
+  size: 19792
+  hash: md5
+  path: aggregated_sentiments.csv
