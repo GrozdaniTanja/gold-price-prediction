@@ -245,12 +245,12 @@ jobs:
 
   merge_data:
     runs-on: ubuntu-latest
-    needs: [process-data, fetch-news-data]
+    needs: [process-data, fetch_news_data]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ needs.fetch-news-data.outputs.sha_new }}
+          ref: ${{ needs.fetch_news_data.outputs.sha_new }}
 
       - name: Install Poetry
         run: pipx install poetry
