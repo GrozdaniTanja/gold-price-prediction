@@ -2,8 +2,9 @@ name: Data-Pipeline
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */2 * * *'
   workflow_dispatch:
+
 
 jobs:
   fetch-data:
@@ -210,7 +211,7 @@ jobs:
          run: |
            poetry run python -m pytest tests/test_api.py
 
-       - name: Fetch bike data
+       - name: Fetch news data
          run: poetry run python src/data/fetch_news_data.py
 
        - name: Remove file from Git tracking

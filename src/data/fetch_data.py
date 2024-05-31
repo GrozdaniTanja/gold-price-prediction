@@ -10,7 +10,7 @@ RAW_DATA_DIR = os.path.join(DATA_DIR, "raw")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-API_KEY = "goldapi-fd3p6tslwqv3gdr-io"
+API_KEY = "goldapi-2uti7pjslwuccnm0-io"
 SYMBOL = "XAU"
 CURRENCY = "EUR"
 
