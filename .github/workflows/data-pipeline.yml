@@ -9,8 +9,10 @@ on:
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
+
     outputs:
       sha_new: ${{ steps.sha_new.outputs.SHA_NEW }}
+      
     permissions:
       contents: write
     steps:
@@ -247,6 +249,10 @@ jobs:
   merge_data:
     runs-on: ubuntu-latest
     needs: [process-data, fetch_news_data]
+
+    outputs:
+      sha_merge: ${{ steps.sha_merge.outputs.SHA_MERGE }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -305,6 +311,101 @@ jobs:
           git stash pop || true 
           git add .
           git commit -m "action: merge data"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Get commit SHA and store it in GITHUB_OUTPUT
+        id: sha_merge
+        run: echo "SHA_MERGE=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  
+  validation:
+    runs-on: ubuntu-latest
+    needs: merge_data
+
+    outputs:
+      sha_new: ${{ steps.sha_new.outputs.SHA_NEW }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.merge_data.outputs.sha_new }}
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          poetry install --with dev --no-interaction --no-root
+
+      - name: Install DVC
+        run: |
+          pip install dvc
+
+      - name: Install DVC with S3 support
+        run: |
+          pip install 'dvc[s3]'
+
+      - name: Configure DVC
+        run: |
+
+          dvc remote modify origin endpointurl https://dagshub.com/GrozdaniTanja/gold-price-prediction.s3
+          dvc remote modify origin access_key_id ${{ secrets.DAGSHUB_ACCESS_KEY_ID }}
+          dvc remote modify origin secret_access_key ${{ secrets.DAGSHUB_SECRET_ACCESS_KEY }}
+
+      - name: DVC pull
+        run: |
+          dvc pull -r origin
+
+      - name: Get reference data
+        run: |
+          dvc get . data/merged/current_data.csv --rev $SHA_NEW --out data/merged/reference_data.csv --force
+
+      - name: Copy current data into reference data
+        run: |
+          cp data/merged/current_data.csv data/merged/reference_data.csv
+
+#       - name: Run Data Drift
+#         run: |
+#           poetry run python src/validation/data_drift.py
+
+#       - name: Run Stability tests
+#         run: |
+#           poetry run python src/validation/stability_tests.py
+
+#       - name: Deploy DataDocs to Netlify
+#         uses: nwtgck/actions-netlify@v1.2
+#         with:
+#           publish-dir: "reports/sites"
+#           production-deploy: true
+#         env:
+#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+#           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Commit changes to GIT
+        run: |
+          git config --global user.email "tanja.grozdani@student.um.si"
+          git config --global user.name "GrozdaniTanja"
+          git stash
+          git pull --rebase origin ${{ github.ref }}
+          git stash pop || true 
+          git add .
+          git commit -m "action: validate data"  
+      
+#       - name: Pull changes
+#         run: |
+#           git config --global pull.rebase false
+#           git pull --strategy=recursive -Xtheirs origin ${{ github.ref }}
 
       - name: Push changes
         uses: ad-m/github-push-action@master
