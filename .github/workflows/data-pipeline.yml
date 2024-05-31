@@ -369,11 +369,11 @@ jobs:
 
       - name: Get reference data
         run: |
-          dvc get . data/merged/current_data.csv --rev $SHA_NEW --out data/merged/reference_data.csv --force
+          dvc get . data/current_data.csv --rev $SHA_NEW --out data/reference_data.csv --force
 
       - name: Copy current data into reference data
         run: |
-          cp data/merged/current_data.csv data/merged/reference_data.csv
+          cp data/current_data.csv data/reference_data.csv
 
 #       - name: Run Data Drift
 #         run: |
