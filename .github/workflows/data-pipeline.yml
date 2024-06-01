@@ -334,7 +334,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ needs.merge_data.outputs.sha_new }}
+          ref: ${{ needs.merge_data.outputs.sha_merge }}
 
       - name: Install Poetry
         run: pipx install poetry
@@ -391,6 +391,14 @@ jobs:
 #         env:
 #           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
 #           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Check file contents
+        run: |
+          echo "Reference Data:"
+          cat data/reference_data.csv
+          echo "Current Data:"
+          cat data/current_data.csv
+
 
       - name: Commit changes to GIT
         run: |
