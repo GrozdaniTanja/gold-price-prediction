@@ -396,7 +396,7 @@ jobs:
       - name: Deploy DataDocs to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "gx/uncommitted/data_docs/local_site"
+          publish-dir: "reports/sites"
           production-deploy: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
