@@ -369,7 +369,7 @@ jobs:
 
       - name: Get reference data
         run: |
-          dvc get . data/current_data.csv --rev $SHA_NEW --out data/reference_data.csv --force
+          dvc get . data/current_data.csv --rev $SHA_MERGE --out data/reference_data.csv --force
 
       - name: Copy current data into reference data
         run: |
