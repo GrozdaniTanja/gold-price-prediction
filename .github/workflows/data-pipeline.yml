@@ -370,27 +370,13 @@ jobs:
       - name: Get reference data
         run: |
           dvc get . data/merged/EUR-merged-gold-price-data.csv --rev $SHA_MERGE --out data/reference_data.csv --force
+#         dvc get . data/merged/EUR-merged-gold-price-data.csv --rev $SHA_MERGE^ --out data/reference_data.csv --force
+
 
       - name: Copy current data into reference data
         run: |
           cp data/merged/EUR-merged-gold-price-data.csv data/current_data.csv
-
-#       - name: Run Data Drift
-#         run: |
-#           poetry run python src/validation/data_drift.py
-
-#       - name: Run Stability tests
-#         run: |
-#           poetry run python src/validation/stability_tests.py
-
-#       - name: Deploy DataDocs to Netlify
-#         uses: nwtgck/actions-netlify@v1.2
-#         with:
-#           publish-dir: "reports/sites"
-#           production-deploy: true
-#         env:
-#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-#           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+#         dvc get . data/merged/EUR-merged-gold-price-data.csv --rev HEAD --out data/reference_data.csv --force
 
       - name: Check file contents
         run: |
@@ -399,6 +385,22 @@ jobs:
           echo "Current Data:"
           cat data/current_data.csv
 
+      - name: Run Data Drift
+        run: |
+          poetry run python src/validation/data_drift.py
+
+      - name: Run Stability tests
+        run: |
+          poetry run python src/validation/stability_tests.py
+
+      - name: Deploy DataDocs to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: "gx/uncommitted/data_docs/local_site"
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Commit changes to GIT
         run: |
