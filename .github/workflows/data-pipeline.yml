@@ -473,7 +473,7 @@ jobs:
 
       - name: DVC pull
         run: |
-          dvc pull -r origin
+          dvc pull -r origin --force
 
       - name: Run split data
         run: |
@@ -481,6 +481,9 @@ jobs:
 
       - name: Commit changes to DVC
         run: |
+          dvc add data/merged/*.csv
+          dvc add data/processed/*.csv
+          dvc add data/raw/*.csv
           dvc add data/*.csv
           dvc push -r origin
 
