@@ -432,3 +432,74 @@ jobs:
       - name: Get commit SHA and store it in GITHUB_OUTPUT
         id: sha_new
         run: echo "SHA_NEW=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+
+  split-data:
+    runs-on: ubuntu-latest
+    needs:
+      - validation
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.validation.outputs.sha_new }}
+          fetch-depth: 0
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          poetry install --with dev --no-interaction --no-root
+
+      - name: Install DVC
+        run: |
+          pip install dvc
+
+      - name: Install DVC with S3 support
+        run: |
+          pip install 'dvc[s3]'
+
+      - name: Configure DVC
+        run: |
+          dvc remote modify origin endpointurl https://dagshub.com/GrozdaniTanja/IIR.s3
+          dvc remote modify origin access_key_id ${{ secrets.DAGSHUB_ACCESS_KEY_ID }}
+          dvc remote modify origin secret_access_key ${{ secrets.DAGSHUB_SECRET_ACCESS_KEY }}
+
+      - name: DVC pull
+        run: |
+          dvc pull -r origin
+
+      - name: Run split data
+        run: |
+          poetry run python src/data/split_data.py
+
+      - name: Commit changes to DVC
+        run: |
+          dvc add data/*.csv
+          dvc push -r origin
+
+      - name: Commit changes to GIT
+        run: |
+          git config --global user.email "tanja.grozdani@student.um.si"
+          git config --global user.name "GrozdaniTanja"
+          git stash
+          git pull --rebase origin ${{ github.ref }}
+          git stash pop || true 
+          git add .
+          git commit -m "action: split data"  
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Get commit SHA and store it in GITHUB_OUTPUT
+        id: sha_new
+        run: echo "SHA_NEW=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
