@@ -398,9 +398,15 @@ jobs:
           git config --global user.name "GrozdaniTanja"
           git stash
           git pull --rebase origin ${{ github.ref }}
-          git stash pop || true 
-          git add .
-          git commit -m "action: validate data"  
+          git stash pop || true
+          # Check for changes before attempting to commit
+          if [[ `git status --porcelain` ]]; then
+            git add .
+            git commit -m "action: validate data"
+          else
+            echo "No changes to commit"
+          fi
+ 
       
 #       - name: Pull changes
 #         run: |
