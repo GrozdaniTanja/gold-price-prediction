@@ -396,7 +396,7 @@ jobs:
       - name: Deploy DataDocs to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "reports/sites"
+          publish-dir: "gx/uncommitted/data-docs/local_site"
           production-deploy: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
@@ -482,9 +482,6 @@ jobs:
       - name: Commit changes to DVC
         run: |
           dvc add data/merged/*.csv
-          dvc add data/processed/*.csv
-          dvc add data/raw/*.csv
-          dvc add data/*.csv
           dvc push -r origin
 
       - name: Commit changes to GIT
