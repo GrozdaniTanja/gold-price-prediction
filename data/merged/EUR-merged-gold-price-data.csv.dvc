@@ -1,5 +1,5 @@
 outs:
-- md5: 22a3034a191cf51b278d2e2aabe579d4
-  size: 14827
+- md5: 0655b81cd616a9e2907730b170f14917
+  size: 14722
   hash: md5
   path: EUR-merged-gold-price-data.csv
