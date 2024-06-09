@@ -5,7 +5,6 @@ on:
     workflows: ["Data Pipeline"]
     types:
       - completed
-      
   workflow_dispatch:
 
 jobs:
@@ -37,15 +36,18 @@ jobs:
       run: pip install 'dvc[s3]'
 
     - name: Configure DVC
+      env:
+        DAGSHUB_ACCESS_KEY_ID: ${{ secrets.DAGSHUB_ACCESS_KEY_ID }}
+        DAGSHUB_SECRET_ACCESS_KEY: ${{ secrets.DAGSHUB_SECRET_ACCESS_KEY }}
       run: |
         dvc remote modify origin endpointurl https://dagshub.com/GrozdaniTanja/IIR.s3
-        dvc remote modify origin access_key_id ${{ secrets.DAGSHUB_ACCESS_KEY_ID }}
-        dvc remote modify origin secret_access_key ${{ secrets.DAGSHUB_SECRET_ACCESS_KEY }}
+        dvc remote modify origin access_key_id $DAGSHUB_ACCESS_KEY_ID
+        dvc remote modify origin secret_access_key $DAGSHUB_SECRET_ACCESS_KEY
 
     - name: DVC pull
       run: dvc pull -r origin
 
-    - name: Fetch weather data
+    - name: Train model
       run: poetry run python src/model/train_model.py
 
     - name: Commit changes to GIT
@@ -54,9 +56,13 @@ jobs:
         git config --global user.name "GrozdaniTanja"
         git stash
         git pull --rebase origin ${{ github.ref }}
-        git stash pop || true 
-        git add .
-        git commit -m "action: train model"
+        git stash pop || true
+        # Check for changes before attempting to commit
+        if [[ `git status --porcelain` ]]; then
+          git add .
+          git commit -m "action: validate data"
+        else
+          echo "No changes to commit"
 
     - name: Push changes
       uses: ad-m/github-push-action@master
