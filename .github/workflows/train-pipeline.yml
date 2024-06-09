@@ -47,7 +47,7 @@ jobs:
 
     - name: Train model
       env:
-        DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_API_TOKEN }}
+        DAGSHUB_API_TOKEN: ${{ secrets.DAGSHUB_API_TOKEN }}
       run: poetry run python src/model/train_model.py
 
     - name: Commit changes to GIT
