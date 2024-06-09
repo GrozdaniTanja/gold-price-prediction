@@ -14,10 +14,13 @@ from skl2onnx.common.data_types import FloatTensorType
 from onnxruntime.quantization import quantize_dynamic, QuantType
 from sklearn.model_selection import train_test_split
 import joblib
+from dotenv import load_dotenv
 
-# currency = "EUR"
 
-dagshub.init("gold-price-prediction", "GrozdaniTanja", mlflow=True)
+load_dotenv()
+
+dagshub.init("gold-price-prediction", "GrozdaniTanja",
+             mlflow=True, token=os.getenv("DAGSHUB_API_TOKEN"))
 tracking_uri = mlflow.get_tracking_uri()
 print(f"MLflow tracking URI: {tracking_uri}")
 

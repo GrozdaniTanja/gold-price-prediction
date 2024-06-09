@@ -2,6 +2,7 @@ __pycache__/
 node_modules
 _py
 mlruns/
+.env
 
 
 # Flask stuff:

@@ -2,7 +2,7 @@ name: Model Training Pipeline
 
 on:
   workflow_run:
-    workflows: ["Data Pipeline"]
+    workflows: ["Data-Pipeline"]
     types:
       - completed
   workflow_dispatch:
@@ -46,6 +46,8 @@ jobs:
       run: dvc pull -r origin
 
     - name: Train model
+      env:
+        DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_API_TOKEN }}
       run: poetry run python src/model/train_model.py
 
     - name: Commit changes to GIT
