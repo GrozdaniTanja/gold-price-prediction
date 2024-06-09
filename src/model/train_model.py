@@ -19,8 +19,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-dagshub.init("gold-price-prediction", "GrozdaniTanja",
-             mlflow=True, auth_token=os.getenv("DAGSHUB_API_TOKEN"))
+dagshub.init("gold-price-prediction", "GrozdaniTanja",mlflow=True)
+os.environ['DAGSHUB_API_TOKEN'] = os.getenv("DAGSHUB_API_TOKEN")
 tracking_uri = mlflow.get_tracking_uri()
 print(f"MLflow tracking URI: {tracking_uri}")
 
