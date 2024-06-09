@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 dagshub.init("gold-price-prediction", "GrozdaniTanja",
-             mlflow=True, token=os.getenv("DAGSHUB_API_TOKEN"))
+             mlflow=True, auth_token=os.getenv("DAGSHUB_API_TOKEN"))
 tracking_uri = mlflow.get_tracking_uri()
 print(f"MLflow tracking URI: {tracking_uri}")
 
