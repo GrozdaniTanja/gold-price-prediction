@@ -2,7 +2,7 @@ import pytest
 import requests
 from datetime import datetime, timedelta
 
-API_KEY_GOLD = "goldapi-acjnanslwz78x7d-io"
+API_KEY_GOLD = "goldapi-3hja19lwj1d0v0-io"
 SYMBOL = "XAU"
 CURRENCY = "EUR"
 

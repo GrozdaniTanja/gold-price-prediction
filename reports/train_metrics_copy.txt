@@ -1,0 +1,6 @@
+Linear Regression train MSE for EUR: 0.00017007477881768478
+Linear Regression train MAPE for EUR: 0.00020909126899692606
+Linear Regression train R-squared for EUR: 0.9999983528399203
+Linear Regression train MSE for EUR: 0.00017007477881768478
+Linear Regression train MAPE for EUR: 0.00020909126899692606
+Linear Regression train R-squared for EUR: 0.9999983528399203

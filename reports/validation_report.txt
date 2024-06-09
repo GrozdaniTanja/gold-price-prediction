@@ -1,0 +1,389 @@
+
+ --- 
+ Date and Time: 2024-06-09 15:18:11
+
+{
+    "run_id": {
+        "run_name": "20240609-131809-my-run-name-template",
+        "run_time": "2024-06-09T15:18:09.946663+02:00"
+    },
+    "run_results": {
+        "ValidationResultIdentifier::merge_suite/20240609-131809-my-run-name-template/20240609T131809.946663Z/911da3637c1d59ef6fac2108980c57c0": {
+            "validation_result": {
+                "success": false,
+                "results": [
+                    {
+                        "success": false,
+                        "expectation_config": {
+                            "expectation_type": "expect_table_row_count_to_be_between",
+                            "kwargs": {
+                                "max_value": 109,
+                                "min_value": 109,
+                                "batch_id": "911da3637c1d59ef6fac2108980c57c0"
+                            },
+                            "meta": {
+                                "profiler_details": {
+                                    "metric_configuration": {
+                                        "domain_kwargs": {},
+                                        "metric_name": "table.row_count",
+                                        "metric_value_kwargs": null
+                                    },
+                                    "num_batches": 1
+                                }
+                            }
+                        },
+                        "result": {
+                            "observed_value": 132
+                        },
+                        "meta": {},
+                        "exception_info": {
+                            "raised_exception": false,
+                            "exception_traceback": null,
+                            "exception_message": null
+                        }
+                    },
+                    {
+                        "success": true,
+                        "expectation_config": {
+                            "expectation_type": "expect_table_columns_to_match_set",
+                            "kwargs": {
+                                "column_set": [
+                                    "high_price",
+                                    "ch",
+                                    "sentiment_score",
+                                    "prev_close_price",
+                                    "chp",
+                                    "price",
+                                    "timestamp",
+                                    "low_price",
+                                    "open_price"
+                                ],
+                                "exact_match": null,
+                                "batch_id": "911da3637c1d59ef6fac2108980c57c0"
+                            },
+                            "meta": {
+                                "profiler_details": {
+                                    "success_ratio": 1.0
+                                }
+                            }
+                        },
+                        "result": {
+                            "observed_value": [
+                                "timestamp",
+                                "price",
+                                "prev_close_price",
+                                "open_price",
+                                "low_price",
+                                "high_price",
+                                "ch",
+                                "chp",
+                                "sentiment_score"
+                            ]
+                        },
+                        "meta": {},
+                        "exception_info": {
+                            "raised_exception": false,
+                            "exception_traceback": null,
+                            "exception_message": null
+                        }
+                    }
+                ],
+                "evaluation_parameters": {},
+                "statistics": {
+                    "evaluated_expectations": 2,
+                    "successful_expectations": 1,
+                    "unsuccessful_expectations": 1,
+                    "success_percent": 50.0
+                },
+                "meta": {
+                    "great_expectations_version": "0.18.14",
+                    "expectation_suite_name": "merge_suite",
+                    "run_id": {
+                        "run_name": "20240609-131809-my-run-name-template",
+                        "run_time": "2024-06-09T15:18:09.946663+02:00"
+                    },
+                    "batch_spec": {
+                        "path": "C:\\Users\\ID\\Desktop\\FAKULTET\\1 LETNIK MAG\\2semestar\\IIR\\gold-price-prediction\\gx\\..\\data\\current_data.csv"
+                    },
+                    "batch_markers": {
+                        "ge_load_time": "20240609T131809.987659Z",
+                        "pandas_data_fingerprint": "be6b3bffde9366fdd99002551035f284"
+                    },
+                    "active_batch_definition": {
+                        "datasource_name": "merged_data",
+                        "data_connector_name": "default_inferred_data_connector_name",
+                        "data_asset_name": "current_data.csv",
+                        "batch_identifiers": {}
+                    },
+                    "validation_time": "20240609T131810.060141Z",
+                    "checkpoint_name": "merge_checkpoint",
+                    "validation_id": null,
+                    "checkpoint_id": null
+                }
+            },
+            "actions_results": {
+                "store_validation_result": {
+                    "class": "StoreValidationResultAction"
+                },
+                "store_evaluation_params": {
+                    "class": "StoreEvaluationParametersAction"
+                },
+                "update_data_docs": {
+                    "local_site": "file://C:\\Users\\ID\\Desktop\\FAKULTET\\1 LETNIK MAG\\2semestar\\IIR\\gold-price-prediction\\gx\\uncommitted/data_docs/local_site/validations%5Cmerge_suite%5C20240609-131809-my-run-name-template%5C20240609T131809.946663Z%5C911da3637c1d59ef6fac2108980c57c0.html",
+                    "class": "UpdateDataDocsAction"
+                }
+            }
+        }
+    },
+    "checkpoint_config": {
+        "expectation_suite_name": null,
+        "expectation_suite_ge_cloud_id": null,
+        "slack_webhook": null,
+        "default_validation_id": null,
+        "template_name": null,
+        "batch_request": {},
+        "site_names": null,
+        "notify_with": null,
+        "config_version": 1.0,
+        "module_name": "great_expectations.checkpoint",
+        "name": "merge_checkpoint",
+        "evaluation_parameters": {},
+        "ge_cloud_id": null,
+        "run_name_template": "%Y%m%d-%H%M%S-my-run-name-template",
+        "notify_on": null,
+        "validations": [
+            {
+                "id": null,
+                "batch_request": {
+                    "datasource_name": "merged_data",
+                    "data_connector_name": "default_inferred_data_connector_name",
+                    "data_asset_name": "current_data.csv",
+                    "data_connector_query": {
+                        "index": -1
+                    }
+                },
+                "expectation_suite_name": "merge_suite",
+                "expectation_suite_ge_cloud_id": null,
+                "name": null
+            }
+        ],
+        "class_name": "SimpleCheckpoint",
+        "runtime_configuration": {},
+        "action_list": [
+            {
+                "name": "store_validation_result",
+                "action": {
+                    "class_name": "StoreValidationResultAction"
+                }
+            },
+            {
+                "name": "store_evaluation_params",
+                "action": {
+                    "class_name": "StoreEvaluationParametersAction"
+                }
+            },
+            {
+                "name": "update_data_docs",
+                "action": {
+                    "class_name": "UpdateDataDocsAction"
+                }
+            }
+        ],
+        "profilers": []
+    },
+    "success": false
+}
+ --- 
+ Date and Time: 2024-06-09 15:41:53
+
+{
+    "run_id": {
+        "run_name": "20240609-134151-my-run-name-template",
+        "run_time": "2024-06-09T15:41:51.313667+02:00"
+    },
+    "run_results": {
+        "ValidationResultIdentifier::merge_suite/20240609-134151-my-run-name-template/20240609T134151.313667Z/911da3637c1d59ef6fac2108980c57c0": {
+            "validation_result": {
+                "success": false,
+                "results": [
+                    {
+                        "success": false,
+                        "expectation_config": {
+                            "expectation_type": "expect_table_row_count_to_be_between",
+                            "kwargs": {
+                                "max_value": 109,
+                                "min_value": 109,
+                                "batch_id": "911da3637c1d59ef6fac2108980c57c0"
+                            },
+                            "meta": {
+                                "profiler_details": {
+                                    "metric_configuration": {
+                                        "domain_kwargs": {},
+                                        "metric_name": "table.row_count",
+                                        "metric_value_kwargs": null
+                                    },
+                                    "num_batches": 1
+                                }
+                            }
+                        },
+                        "result": {
+                            "observed_value": 132
+                        },
+                        "meta": {},
+                        "exception_info": {
+                            "raised_exception": false,
+                            "exception_traceback": null,
+                            "exception_message": null
+                        }
+                    },
+                    {
+                        "success": true,
+                        "expectation_config": {
+                            "expectation_type": "expect_table_columns_to_match_set",
+                            "kwargs": {
+                                "column_set": [
+                                    "high_price",
+                                    "ch",
+                                    "sentiment_score",
+                                    "prev_close_price",
+                                    "chp",
+                                    "price",
+                                    "timestamp",
+                                    "low_price",
+                                    "open_price"
+                                ],
+                                "exact_match": null,
+                                "batch_id": "911da3637c1d59ef6fac2108980c57c0"
+                            },
+                            "meta": {
+                                "profiler_details": {
+                                    "success_ratio": 1.0
+                                }
+                            }
+                        },
+                        "result": {
+                            "observed_value": [
+                                "timestamp",
+                                "price",
+                                "prev_close_price",
+                                "open_price",
+                                "low_price",
+                                "high_price",
+                                "ch",
+                                "chp",
+                                "sentiment_score"
+                            ]
+                        },
+                        "meta": {},
+                        "exception_info": {
+                            "raised_exception": false,
+                            "exception_traceback": null,
+                            "exception_message": null
+                        }
+                    }
+                ],
+                "evaluation_parameters": {},
+                "statistics": {
+                    "evaluated_expectations": 2,
+                    "successful_expectations": 1,
+                    "unsuccessful_expectations": 1,
+                    "success_percent": 50.0
+                },
+                "meta": {
+                    "great_expectations_version": "0.18.14",
+                    "expectation_suite_name": "merge_suite",
+                    "run_id": {
+                        "run_name": "20240609-134151-my-run-name-template",
+                        "run_time": "2024-06-09T15:41:51.313667+02:00"
+                    },
+                    "batch_spec": {
+                        "path": "C:\\Users\\ID\\Desktop\\FAKULTET\\1 LETNIK MAG\\2semestar\\IIR\\gold-price-prediction\\gx\\..\\data\\current_data.csv"
+                    },
+                    "batch_markers": {
+                        "ge_load_time": "20240609T134151.348665Z",
+                        "pandas_data_fingerprint": "be6b3bffde9366fdd99002551035f284"
+                    },
+                    "active_batch_definition": {
+                        "datasource_name": "merged_data",
+                        "data_connector_name": "default_inferred_data_connector_name",
+                        "data_asset_name": "current_data.csv",
+                        "batch_identifiers": {}
+                    },
+                    "validation_time": "20240609T134151.410665Z",
+                    "checkpoint_name": "merge_checkpoint",
+                    "validation_id": null,
+                    "checkpoint_id": null
+                }
+            },
+            "actions_results": {
+                "store_validation_result": {
+                    "class": "StoreValidationResultAction"
+                },
+                "store_evaluation_params": {
+                    "class": "StoreEvaluationParametersAction"
+                },
+                "update_data_docs": {
+                    "local_site": "file://C:\\Users\\ID\\Desktop\\FAKULTET\\1 LETNIK MAG\\2semestar\\IIR\\gold-price-prediction\\gx\\uncommitted/data_docs/local_site/validations%5Cmerge_suite%5C20240609-134151-my-run-name-template%5C20240609T134151.313667Z%5C911da3637c1d59ef6fac2108980c57c0.html",
+                    "class": "UpdateDataDocsAction"
+                }
+            }
+        }
+    },
+    "checkpoint_config": {
+        "evaluation_parameters": {},
+        "run_name_template": "%Y%m%d-%H%M%S-my-run-name-template",
+        "slack_webhook": null,
+        "runtime_configuration": {},
+        "notify_with": null,
+        "template_name": null,
+        "site_names": null,
+        "ge_cloud_id": null,
+        "validations": [
+            {
+                "expectation_suite_name": "merge_suite",
+                "id": null,
+                "batch_request": {
+                    "datasource_name": "merged_data",
+                    "data_connector_name": "default_inferred_data_connector_name",
+                    "data_asset_name": "current_data.csv",
+                    "data_connector_query": {
+                        "index": -1
+                    }
+                },
+                "expectation_suite_ge_cloud_id": null,
+                "name": null
+            }
+        ],
+        "config_version": 1.0,
+        "expectation_suite_ge_cloud_id": null,
+        "notify_on": null,
+        "class_name": "SimpleCheckpoint",
+        "profilers": [],
+        "module_name": "great_expectations.checkpoint",
+        "batch_request": {},
+        "default_validation_id": null,
+        "action_list": [
+            {
+                "name": "store_validation_result",
+                "action": {
+                    "class_name": "StoreValidationResultAction"
+                }
+            },
+            {
+                "name": "store_evaluation_params",
+                "action": {
+                    "class_name": "StoreEvaluationParametersAction"
+                }
+            },
+            {
+                "name": "update_data_docs",
+                "action": {
+                    "class_name": "UpdateDataDocsAction"
+                }
+            }
+        ],
+        "expectation_suite_name": null,
+        "name": "merge_checkpoint"
+    },
+    "success": false
+}

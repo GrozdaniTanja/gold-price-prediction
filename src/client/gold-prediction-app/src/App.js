@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router, Route, Routes, Switch, Link
+} from 'react-router-dom';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './App.css';
+import AdminPanel from '../src/AdminPanel';
 
-function App() {
+function Home() {
   const [days, setDays] = useState('');
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
@@ -12,8 +16,9 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/predict', { days });
-      setPredictions(response.data.predictions);
+      const daysInt = parseInt(days, 10); // Convert days to an integer
+      const response = await axios.post('http://localhost:5000/predict', { days: daysInt });
+      setPredictions(response.data.prediction);
       setError(null);
     } catch (err) {
       setError('Error fetching predictions');
@@ -62,8 +67,22 @@ function App() {
             </div>
           </>
         )}
+        <nav>
+          <Link to="/admin">Admin Panel</Link>
+        </nav>
       </header>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminPanel />} />
+      </Routes>
+    </Router>
   );
 }
 

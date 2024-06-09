@@ -1,0 +1,112 @@
+{
+  "evaluation_parameters": {},
+  "meta": {
+    "active_batch_definition": {
+      "batch_identifiers": {},
+      "data_asset_name": "current_data.csv",
+      "data_connector_name": "default_inferred_data_connector_name",
+      "datasource_name": "merged_data"
+    },
+    "batch_markers": {
+      "ge_load_time": "20240609T131453.699244Z",
+      "pandas_data_fingerprint": "be6b3bffde9366fdd99002551035f284"
+    },
+    "batch_spec": {
+      "path": "C:\\Users\\ID\\Desktop\\FAKULTET\\1 LETNIK MAG\\2semestar\\IIR\\gold-price-prediction\\gx\\..\\data\\current_data.csv"
+    },
+    "checkpoint_id": null,
+    "checkpoint_name": "merge_checkpoint",
+    "expectation_suite_name": "merge_suite",
+    "great_expectations_version": "0.18.14",
+    "run_id": {
+      "run_name": "20240609-131453-my-run-name-template",
+      "run_time": "2024-06-09T15:14:53.662244+02:00"
+    },
+    "validation_id": null,
+    "validation_time": "20240609T131453.763244Z"
+  },
+  "results": [
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_table_row_count_to_be_between",
+        "kwargs": {
+          "batch_id": "911da3637c1d59ef6fac2108980c57c0",
+          "max_value": 109,
+          "min_value": 109
+        },
+        "meta": {
+          "profiler_details": {
+            "metric_configuration": {
+              "domain_kwargs": {},
+              "metric_name": "table.row_count",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      },
+      "meta": {},
+      "result": {
+        "observed_value": 132
+      },
+      "success": false
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_table_columns_to_match_set",
+        "kwargs": {
+          "batch_id": "911da3637c1d59ef6fac2108980c57c0",
+          "column_set": [
+            "high_price",
+            "ch",
+            "sentiment_score",
+            "prev_close_price",
+            "chp",
+            "price",
+            "timestamp",
+            "low_price",
+            "open_price"
+          ],
+          "exact_match": null
+        },
+        "meta": {
+          "profiler_details": {
+            "success_ratio": 1.0
+          }
+        }
+      },
+      "meta": {},
+      "result": {
+        "observed_value": [
+          "timestamp",
+          "price",
+          "prev_close_price",
+          "open_price",
+          "low_price",
+          "high_price",
+          "ch",
+          "chp",
+          "sentiment_score"
+        ]
+      },
+      "success": true
+    }
+  ],
+  "statistics": {
+    "evaluated_expectations": 2,
+    "success_percent": 50.0,
+    "successful_expectations": 1,
+    "unsuccessful_expectations": 1
+  },
+  "success": false
+}
