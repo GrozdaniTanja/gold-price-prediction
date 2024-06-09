@@ -11,6 +11,8 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false && poetry install --no-dev
 
 COPY . /app
+ENV DAGSHUB_API_TOKEN = 3def17bd6cacf587ec01861510ecdbca35ee2eed
+
 
 EXPOSE 5000
 
