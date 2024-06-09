@@ -18,8 +18,17 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-os.environ['DAGSHUB_API_TOKEN'] = os.getenv("DAGSHUB_API_TOKEN")
-print(f"DAGSHUB_API_TOKEN: {os.getenv('DAGSHUB_API_TOKEN')}")
+
+dagshub_api_token = os.getenv("DAGSHUB_API_TOKEN")
+if not dagshub_api_token:
+    raise EnvironmentError(
+        "DAGSHUB_API_TOKEN not found in environment variables.")
+
+os.environ['DAGSHUB_API_TOKEN'] = dagshub_api_token
+print(f"DAGSHUB_API_TOKEN: {dagshub_api_token}")
+
+dagshub.auth.add_app_token(dagshub_api_token)
+
 dagshub.init("gold-price-prediction", "GrozdaniTanja", mlflow=True)
 
 tracking_uri = mlflow.get_tracking_uri()

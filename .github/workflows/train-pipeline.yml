@@ -45,6 +45,10 @@ jobs:
     - name: DVC pull
       run: dvc pull -r origin
 
+    - name: Set up environment variables
+      run: echo "DAGSHUB_API_TOKEN=${{ secrets.DAGSHUB_API_TOKEN }}" >> $GITHUB_ENV
+
+
     - name: Train model
       env:
         DAGSHUB_API_TOKEN: ${{ secrets.DAGSHUB_API_TOKEN }}
