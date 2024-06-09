@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  backend-gold:
+    build: .
+    restart: always
+    container_name: "backend-gold"
+    ports:
+      - 5000:5000
+
+  frontend-gold:
+    build: ./src/client/gold-prediction-app
+    restart: always
+    container_name: "frontend-gold"
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend-gold
