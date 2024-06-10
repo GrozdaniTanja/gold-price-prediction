@@ -34,13 +34,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: Show disk usage before cleanup
+        run: df -h
+
       - name: Remove unused Docker data
-        run: |
-          docker system prune -af
-          docker volume prune -f
-          if [ "$(docker images -q | wc -l)" -ne 0 ]; then
-            docker rmi $(docker images -q) -f
-          fi
+        run: docker system prune --all --force --volumes
+
+      - name: Show disk usage after cleanup
+        run: df -h
 
       - name: Start Application Stack
         run: docker-compose up -d
