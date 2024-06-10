@@ -38,6 +38,7 @@ jobs:
         run: |
           docker system prune -af
           docker volume prune -f
+          docker rmi $(docker images -q) -f
 
       - name: Start Application Stack
         run: docker-compose up -d
@@ -47,3 +48,17 @@ jobs:
 
       - name: Push Docker Images to Registry
         run: docker-compose -f docker-compose.yml push
+
+      - name: Deploy Backend 
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_BACKEND_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
+
+      - name: Deploy Frontend 
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_FRONTEND_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
