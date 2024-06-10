@@ -38,7 +38,9 @@ jobs:
         run: |
           docker system prune -af
           docker volume prune -f
-          docker rmi $(docker images -q) -f
+          if [ "$(docker images -q | wc -l)" -ne 0 ]; then
+            docker rmi $(docker images -q) -f
+          fi
 
       - name: Start Application Stack
         run: docker-compose up -d
