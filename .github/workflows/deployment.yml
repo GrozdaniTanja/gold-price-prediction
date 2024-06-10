@@ -36,11 +36,11 @@ jobs:
 
       - name: Build backend Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend-gold:latest -f backend/Dockerfile .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend-gold:latest -f Dockerfile .
 
       - name: Build frontend Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/frontend-gold:latest -f frontend/Dockerfile .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/frontend-gold:latest -f src/client/gold-prediction-app/Dockerfile src/client/gold-prediction-app
 
       - name: Push backend Docker image
         run: |
@@ -49,3 +49,22 @@ jobs:
       - name: Push frontend Docker image
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend-gold:latest
+
+      - name: Deploy to Render
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          # Trigger deployment for backend service
+          curl -X POST \
+            -H "Authorization: Bearer $RENDER_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": true}' \
+            https://api.render.com/v1/services/backend-gold:1.1.1/deploys
+
+          # Trigger deployment for frontend service
+          curl -X POST \
+            -H "Authorization: Bearer $RENDER_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": true}' \
+            https://api.render.com/v1/services/frontend-gold:1.1.1/deploys
+
