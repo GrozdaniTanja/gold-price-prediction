@@ -1,17 +1,23 @@
 version: "3.8"
 services:
   backend-gold:
-    build: .
+    image: tanjag/backend-gold:1.1.1
     restart: always
     container_name: "backend-gold"
     ports:
-      - 5000:5000
+      - "5000:5000"
+    environment:
+      - DAGSHUB_API_TOKEN=3def17bd6cacf587ec01861510ecdbca35ee2eed
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+      - ./models:/app/models
 
   frontend-gold:
-    build: ./src/client/gold-prediction-app
+    image: tanjag/frontend-gold:1.1.1
     restart: always
     container_name: "frontend-gold"
     ports:
-      - 3000:3000
+      - "3000:3000"
     depends_on:
       - backend-gold

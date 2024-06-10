@@ -13,11 +13,14 @@ function Home() {
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
 
+  const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const daysInt = parseInt(days, 10); // Convert days to an integer
-      const response = await axios.post('http://localhost:5000/predict', { days: daysInt });
+      const response = await axios.post(`${backendURL}/predict`, { days: daysInt });
       setPredictions(response.data.prediction);
       setError(null);
     } catch (err) {
