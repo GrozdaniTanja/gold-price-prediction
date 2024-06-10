@@ -40,6 +40,13 @@ jobs:
       - name: Remove unused Docker data
         run: docker system prune --all --force --volumes
 
+      - name: Clean up system
+        run: |
+          sudo apt-get clean
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo rm -rf /tmp/*
+          sudo rm -rf /var/tmp/*
+
       - name: Show disk usage after cleanup
         run: df -h
 
