@@ -20102,5 +20102,723 @@
             }
         },
         "timestamp": "2024-06-11 16:35:56.359914"
+    },
+    {
+        "version": "0.4.24",
+        "tests": [
+            {
+                "name": "The Number of Columns With Missing Values",
+                "description": "The number of columns with missing values is 0. The test threshold is lte=0.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": 0
+                    },
+                    "value": 0.0
+                }
+            },
+            {
+                "name": "The Number Of Rows With Missing Values",
+                "description": "The number of rows with missing values is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0
+                }
+            },
+            {
+                "name": "Number of Constant Columns",
+                "description": "The number of constant columns is 0. The test threshold is lte=0.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": 0
+                    },
+                    "value": 0.0
+                }
+            },
+            {
+                "name": "Number of Duplicate Rows",
+                "description": "The number of duplicate rows is 0. The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0
+                }
+            },
+            {
+                "name": "Number of Duplicate Columns",
+                "description": "The number of duplicate columns is 0. The test threshold is lte=0.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": 0
+                    },
+                    "value": 0.0
+                }
+            },
+            {
+                "name": "Column Types",
+                "description": "The number of columns with a type mismatch is 0 out of 9.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "columns": [
+                        {
+                            "actual_type": "object_",
+                            "column_name": "timestamp",
+                            "expected_type": "object_"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "price",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "prev_close_price",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "open_price",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "low_price",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "high_price",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "ch",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "chp",
+                            "expected_type": "float64"
+                        },
+                        {
+                            "actual_type": "float64",
+                            "column_name": "sentiment_score",
+                            "expected_type": "float64"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Number of Drifted Features",
+                "description": "The drift is detected for 0 out of 9 features. The test threshold is lt=3.",
+                "status": "SUCCESS",
+                "group": "data_drift",
+                "parameters": {
+                    "condition": {
+                        "lt": 3
+                    },
+                    "features": {
+                        "ch": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "chp": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "high_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "low_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "open_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "prev_close_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "sentiment_score": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "timestamp": {
+                            "stattest": "chi-square p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Share of Drifted Columns",
+                "description": "The drift is detected for 0% features (0 out of 9). The test threshold is lt=0.3",
+                "status": "SUCCESS",
+                "group": "data_drift",
+                "parameters": {
+                    "condition": {
+                        "lt": 0.3
+                    },
+                    "features": {
+                        "ch": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "chp": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "high_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "low_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "open_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "prev_close_price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "price": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "sentiment_score": {
+                            "stattest": "K-S p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        },
+                        "timestamp": {
+                            "stattest": "chi-square p_value",
+                            "score": 1.0,
+                            "threshold": 0.05,
+                            "detected": false
+                        }
+                    }
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **high_price** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "high_price"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **price** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "price"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **open_price** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "open_price"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **chp** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "chp"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **prev_close_price** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "prev_close_price"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **ch** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "ch"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **low_price** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "low_price"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **sentiment_score** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "sentiment_score"
+                }
+            },
+            {
+                "name": "The Share of Missing Values in a Column",
+                "description": "The share of missing values in the column **timestamp** is 0. The test threshold is lte=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "lte": {
+                            "value": 0.0,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "column_name": "timestamp"
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **high_price** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **price** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **open_price** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **chp** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **prev_close_price** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **ch** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **low_price** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-Range Values",
+                "description": "The share of values out of range in the column **sentiment_score** is 0 (0 out of 194).  The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "left": null,
+                    "right": null
+                }
+            },
+            {
+                "name": "Share of Out-of-List Values",
+                "description": "The share of values out of list in the column **timestamp** is 0 (0 out of 194). The test threshold is eq=0 \u00b1 1e-12.",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 0,
+                            "relative": 1e-06,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 0.0,
+                    "values": null
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **high_price** is 2.17e+03. The expected range is from 2.14e+03 to 2.19e+03",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "high_price",
+                    "current_mean": 2166.0,
+                    "n_sigmas": 2,
+                    "reference_mean": 2166.0,
+                    "reference_std": 11.86
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **price** is 2.15e+03. The expected range is from 2.13e+03 to 2.18e+03",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "price",
+                    "current_mean": 2154.77,
+                    "n_sigmas": 2,
+                    "reference_mean": 2154.77,
+                    "reference_std": 12.58
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **open_price** is 2.16e+03. The expected range is from 2.13e+03 to 2.19e+03",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "open_price",
+                    "current_mean": 2159.58,
+                    "n_sigmas": 2,
+                    "reference_mean": 2159.58,
+                    "reference_std": 14.35
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **chp** is -0.22. The expected range is from -1.56 to 1.12",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "chp",
+                    "current_mean": -0.22,
+                    "n_sigmas": 2,
+                    "reference_mean": -0.22,
+                    "reference_std": 0.67
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **prev_close_price** is 2.16e+03. The expected range is from 2.13e+03 to 2.19e+03",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "prev_close_price",
+                    "current_mean": 2159.56,
+                    "n_sigmas": 2,
+                    "reference_mean": 2159.56,
+                    "reference_std": 14.42
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **ch** is -4.79. The expected range is from -33.8 to 24.2",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "ch",
+                    "current_mean": -4.79,
+                    "n_sigmas": 2,
+                    "reference_mean": -4.79,
+                    "reference_std": 14.48
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **low_price** is 2.15e+03. The expected range is from 2.12e+03 to 2.17e+03",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "low_price",
+                    "current_mean": 2147.72,
+                    "n_sigmas": 2,
+                    "reference_mean": 2147.72,
+                    "reference_std": 13.43
+                }
+            },
+            {
+                "name": "Mean Value Stability",
+                "description": "The mean value of the column **sentiment_score** is 0.01. The expected range is from -0.23 to 0.25",
+                "status": "SUCCESS",
+                "group": "data_quality",
+                "parameters": {
+                    "column_name": "sentiment_score",
+                    "current_mean": 0.01,
+                    "n_sigmas": 2,
+                    "reference_mean": 0.01,
+                    "reference_std": 0.12
+                }
+            },
+            {
+                "name": "Number of Rows",
+                "description": "The number of rows is 194. The test threshold is eq=194 \u00b1 19.4.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "eq": {
+                            "value": 194,
+                            "relative": 0.1,
+                            "absolute": 1e-12
+                        }
+                    },
+                    "value": 194.0
+                }
+            },
+            {
+                "name": "Number of Columns",
+                "description": "The number of columns is 9. The test threshold is eq=9.",
+                "status": "SUCCESS",
+                "group": "data_integrity",
+                "parameters": {
+                    "condition": {
+                        "eq": 9
+                    },
+                    "value": 9.0
+                }
+            }
+        ],
+        "summary": {
+            "all_passed": true,
+            "total_tests": 36,
+            "success_tests": 36,
+            "failed_tests": 0,
+            "by_status": {
+                "SUCCESS": 36
+            }
+        },
+        "timestamp": "2024-06-11 18:39:18.226949"
     }
 ]
