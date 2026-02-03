@@ -1,5 +1,5 @@
 outs:
-- md5: e7505c4eb9e638cd4c8bf173746f5f47
-  size: 168329
+- md5: d6ddb56bc5a871a7e3c73af341fdaf84
+  size: 168496
   hash: md5
   path: EUR-gold-price-data.csv
